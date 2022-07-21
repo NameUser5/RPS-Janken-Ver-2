@@ -67,17 +67,39 @@ class GUI():
         self.quit_game = Button(text='Quit', command=self.window.destroy)
         self.quit_game.grid(row=4, column=2, pady=1)
         
-        #Display background:
+        ##Display background:
         self.background = Label(image=self.card_background_photo, bg='#0935ce')  # 082eaf
         self.background.grid(row=2, column=2, pady=10)
 
-        #Labels:
+        ##Display text:
         self.banner = Canvas(width=400, height=50)
         self.banner.grid(row=1, column=2, pady=10)
 
         self.banner_text = Label(text="Jan! Ken! Pon!", fg='black')
         self.banner_text.grid(row=1, column=2, pady=1)
 
+        self.you_win_banner = PhotoImage(file=r'sprites\Victory text.png')
+        self.you_lose_banner = PhotoImage(file=r'sprites\Defeat text.png')
+        
+        ## Result lists:
+        self.rock_results = [self.rock_win, self.rock_lose, self.rock_draw]
+        self.paper_results = [self.paper_win, self.paper_lose, self.paper_draw]
+        self.scissors_results = [self.scissors_win, self.scissors_lose, self.scissors_draw]
+# double index possible?
+
+    def cpu_choice(self):
+        choice = random.choice(gl.gambits)
+        return choice
+
+    def user_choice(choice):
+        # print(choice)
+        cpu_current = cpu_choice()
+        result = gl.find_status(choice, cpu_current)
+        print(result)
+        return result
+
         self.window.mainloop()
+
+
 
 # window.mainloop()
