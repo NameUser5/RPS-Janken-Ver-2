@@ -1,3 +1,3 @@
-from gui import *
+from gui import GUI
 
-gui = GUI()
+gui_run = GUI()

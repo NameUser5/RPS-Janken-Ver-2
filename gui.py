@@ -1,4 +1,5 @@
 from tkinter import *
+import random
 
 # window = Tk()
 # window.title('Rock, Paper, Scissors!')
@@ -20,6 +21,33 @@ class GUI():
         ## Current Card display:
         self.card_background_photo = PhotoImage(file=r'sprites\Waiting_Question.png')  # change this to list w idx
         self.card_background_photo = self.card_background_photo.subsample(3, 3)
+
+        ##Display background:
+        self.background = Label(image=self.card_background_photo, bg='#0935ce')  # 082eaf
+        self.background.grid(row=2, column=2, pady=10)
+
+        ## Button sprites:
+        self.rock_photo = PhotoImage(file=r'sprites\rock_button.png')
+        self.rock_photo = self.rock_photo.subsample(6, 6)
+
+        self.paper_photo = PhotoImage(file=r'sprites\paper_button.png')
+        self.paper_photo = self.paper_photo.subsample(6, 6)
+
+        self.scissors_photo = PhotoImage(file=r'sprites\scissors_button.png')
+        self.scissors_photo = self.scissors_photo.subsample(8, 8)
+
+        ## Buttons:
+        self.choose_rock_button = Button(text='Rock', image=self.rock_photo, width=72, height=55)  # after img: command=lambda: user_choice('r'),
+        self.choose_rock_button.grid(row=3, column=1, pady=1)
+
+        self.choose_paper_button = Button(text='Paper', image=self.paper_photo, width=72, height=55)  # command=lambda: user_choice('p'),
+        self.choose_paper_button.grid(row=3, column=2, pady=1)
+
+        self.choose_scissors_button = Button(text='Scissors', image=self.scissors_photo, width=72, height=55)  # command=lambda: user_choice('s'),
+        self.choose_scissors_button.grid(row=3, column=3, pady=1)
+
+        self.quit_game = Button(text='Quit', command=self.window.destroy)
+        self.quit_game.grid(row=4, column=2, pady=1)
 
         ## Card sprites:
 
@@ -44,32 +72,6 @@ class GUI():
         self.scissors_lose = PhotoImage(file=r'sprites\Scissors_Lose_Result.png')
         self.scissors_draw = PhotoImage(file=r'sprites\Scissors_Draw_Result.png')
 
-        ## Button sprites:
-        self.rock_photo = PhotoImage(file=r'sprites\rock_button.png')
-        self.rock_photo = self.rock_photo.subsample(6, 6)
-
-        self.paper_photo = PhotoImage(file=r'sprites\paper_button.png')
-        self.paper_photo = self.paper_photo.subsample(6, 6)
-
-        self.scissors_photo = PhotoImage(file=r'sprites\scissors_button.png')
-        self.scissors_photo = self.scissors_photo.subsample(8, 8)
-
-        ## Buttons:
-        self.choose_rock_button = Button(text='Rock', image=self.rock_photo, width=72, height=55) # after img: command=lambda: user_choice('r'),
-        self.choose_rock_button.grid(row=3, column=1, pady=1)
-
-        self.choose_paper_button = Button(text='Paper', image=self.paper_photo, width=72, height=55) #command=lambda: user_choice('p'),
-        self.choose_paper_button.grid(row=3, column=2, pady=1)
-
-        self.choose_scissors_button = Button(text='Scissors', image=self.scissors_photo, width=72, height=55) #command=lambda: user_choice('s'),
-        self.choose_scissors_button.grid(row=3, column=3, pady=1)
-
-        self.quit_game = Button(text='Quit', command=self.window.destroy)
-        self.quit_game.grid(row=4, column=2, pady=1)
-        
-        ##Display background:
-        self.background = Label(image=self.card_background_photo, bg='#0935ce')  # 082eaf
-        self.background.grid(row=2, column=2, pady=10)
 
         ##Display text:
         self.banner = Canvas(width=400, height=50)
@@ -87,16 +89,16 @@ class GUI():
         self.scissors_results = [self.scissors_win, self.scissors_lose, self.scissors_draw]
 # double index possible?
 
-    def cpu_choice(self):
-        choice = random.choice(gl.gambits)
-        return choice
-
-    def user_choice(choice):
-        # print(choice)
-        cpu_current = cpu_choice()
-        result = gl.find_status(choice, cpu_current)
-        print(result)
-        return result
+    # def cpu_choice(self):
+    #     choice = random.choice(gl.gambits)
+    #     return choice
+    #
+    # def user_choice(choice):
+    #     # print(choice)
+    #     cpu_current = cpu_choice()
+    #     result = gl.find_status(choice, cpu_current)
+    #     print(result)
+    #     return result
 
         self.window.mainloop()
 
