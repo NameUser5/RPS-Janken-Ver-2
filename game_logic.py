@@ -4,6 +4,8 @@ SCISSORS = "s"
 
 gambits = [ROCK, PAPER, SCISSORS]
 
+score = 0
+
 DRAW = 0
 WIN = 1
 LOSE = -1
@@ -32,3 +34,11 @@ def find_status(user_gambit, cpu_gambit):
         else:
             status = DRAW
     return status
+
+def get_score(score):
+    if find_status() == DRAW:
+        score +=0
+    elif find_status() == LOSE:
+        score -=1
+    else:
+        score +=1

@@ -1,5 +1,6 @@
 from tkinter import *
 import random
+import game_logic as logic
 
 # window = Tk()
 # window.title('Rock, Paper, Scissors!')
@@ -89,19 +90,17 @@ class GUI():
         self.scissors_results = [self.scissors_win, self.scissors_lose, self.scissors_draw]
 # double index possible?
 
-    # def cpu_choice(self):
-    #     choice = random.choice(gl.gambits)
-    #     return choice
-    #
-    # def user_choice(choice):
-    #     # print(choice)
-    #     cpu_current = cpu_choice()
-    #     result = gl.find_status(choice, cpu_current)
-    #     print(result)
-    #     return result
-
         self.window.mainloop()
 
-
+    def cpu_choice(self):
+        choice = random.choice(logic.gambits)
+        return choice
+    #
+    def user_choice(choice):
+        # print(choice)
+        cpu_current = choice.cpu_choice()
+        result = logic.find_status(choice, cpu_current)
+        print(result)
+        return result
 
 # window.mainloop()
