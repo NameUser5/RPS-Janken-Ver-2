@@ -35,10 +35,12 @@ def find_status(user_gambit, cpu_gambit):
             status = DRAW
     return status
 
-def get_score(score):
-    if find_status() == DRAW:
-        score +=0
-    elif find_status() == LOSE:
-        score -=1
+
+def get_score(status):
+    global score
+    if status == DRAW:
+        score += 0
+    elif status == LOSE:
+        score -= 1
     else:
-        score +=1
+        score += 1
