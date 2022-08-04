@@ -20,14 +20,14 @@ class GUI():
         self.window.resizable(False, False)
 
         ## Current Card display:
-        self.card_background_photo = PhotoImage(file=r'sprites\Waiting_Question.png')  # change this to list w idx
-        self.card_background_photo = self.card_background_photo.subsample(3, 3)
+        self.card_background_photo = PhotoImage(file=r'sprites\Waiting_Question.png').subsample(3, 3)
+        # self.card_background_photo = self.card_background_photo.subsample(3, 3)
 
         ##Display background:
         self.background = Label(image=self.card_background_photo, bg='#0935ce')  # 082eaf
         self.background.grid(row=2, column=2, pady=10)
 
-        self.scoreboard = Label(text=f"Score: {logic.score}", fg='pink', bg='#0935ce', font=("Helvetica", 14, "bold"))
+        self.scoreboard = Label(text=f"Score:\n {logic.score}", fg='pink', bg='#0935ce', font=("Calibri", 14, "bold"))
         self.scoreboard.grid(row=2, column=3)
 
         ## Button sprites:
@@ -42,16 +42,16 @@ class GUI():
 
         ## Buttons:
         self.choose_rock_button = Button(text='Rock', image=self.rock_photo, command=lambda: self.user_choice('r'),
-                                         width=72, height=55)  # after img: command=lambda: user_choice('r'),
+                                         width=72, height=55)
         self.choose_rock_button.grid(row=3, column=1, pady=1)
 
         self.choose_paper_button = Button(text='Paper', image=self.paper_photo, command=lambda: self.user_choice('p'),
-                                          width=72, height=55)  # command=lambda: user_choice('p'),
+                                          width=72, height=55)
         self.choose_paper_button.grid(row=3, column=2, pady=1)
 
         self.choose_scissors_button = Button(text='Scissors', image=self.scissors_photo,
                                              command=lambda: self.user_choice('s'), width=72,
-                                             height=55)  # command=lambda: user_choice('s'),
+                                             height=55)
         self.choose_scissors_button.grid(row=3, column=3, pady=1)
 
         self.quit_game = Button(text='Quit', command=self.window.destroy)
@@ -61,13 +61,10 @@ class GUI():
         ## Card sprites:
 
         # LOADING - Waiting for cpu choice #
-        self.loading_both = PhotoImage(file=r'sprites\Waiting_Question.png')
-        self.rock_loading = PhotoImage(file=r'sprites\Rock_Question.png')
-        self.rock_loading = self.rock_loading.subsample(3, 3)
-        self.paper_loading = PhotoImage(file=r'sprites\Paper_Question.png')
-        self.paper_loading = self.paper_loading.subsample(3, 3)
-        self.scissors_loading = PhotoImage(file=r'sprites\Scissors_Question.png')
-        self.scissors_loading = self.scissors_loading.subsample(3, 3)
+        self.loading_both = PhotoImage(file=r'sprites\Waiting_Question.png').subsample(3, 3)
+        self.rock_loading = PhotoImage(file=r'sprites\Rock_Question.png').subsample(3, 3)
+        self.paper_loading = PhotoImage(file=r'sprites\Paper_Question.png').subsample(3, 3)
+        self.scissors_loading = PhotoImage(file=r'sprites\Scissors_Question.png').subsample(3, 3)
 
         # ROCK Results #
         self.rock_win = PhotoImage(file=r'sprites\Rock_Win_Result.png').subsample(3, 3)
@@ -104,7 +101,7 @@ class GUI():
 
     def cpu_choice(self):
         cpu_play = random.choice(logic.gambits)
-        time.sleep(4)
+        time.sleep(2)
         return cpu_play
 
     def user_choice(self, user_play):
