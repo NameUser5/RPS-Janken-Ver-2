@@ -3,12 +3,6 @@ import random
 import game_logic as logic
 import time
 
-# window = Tk()
-# window.title('Rock, Paper, Scissors!')
-#
-# window.geometry('580x400')
-# window.config(bg='#0935ce', pady=10, padx=10) #082eaf
-# window.resizable(False, False)
 
 class GUI():
     def __init__(self):
@@ -21,13 +15,13 @@ class GUI():
 
         ## Current Card display:
         self.card_background_photo = PhotoImage(file=r'sprites\Waiting_Question.png').subsample(3, 3)
-        # self.card_background_photo = self.card_background_photo.subsample(3, 3)
 
-        ##Display background:
+        ## Display background:
         self.background = Label(image=self.card_background_photo, bg='#0935ce')  # 082eaf
         self.background.grid(row=2, column=2, pady=10)
 
-        self.scoreboard = Label(text=f"Score:\n {logic.score}", fg='pink', bg='#0935ce', font=("Calibri", 14, "bold"))
+        self.scoreboard = Label(text=f"Score:\n {logic.score}", fg='pink', bg='#0935ce',
+                                font=("Calibri", 16, "bold"), pady=4)
         self.scoreboard.grid(row=2, column=3)
 
         ## Button sprites:
@@ -41,17 +35,19 @@ class GUI():
         self.scissors_photo = self.scissors_photo.subsample(8, 8)
 
         ## Buttons:
-        self.choose_rock_button = Button(text='Rock', image=self.rock_photo, command=lambda: self.user_choice('r'),
+        self.choose_rock_button = Button(text='Rock', image=self.rock_photo,
+                                         command=lambda: self.user_choice('r'),
                                          width=72, height=55)
         self.choose_rock_button.grid(row=3, column=1, pady=1)
 
-        self.choose_paper_button = Button(text='Paper', image=self.paper_photo, command=lambda: self.user_choice('p'),
+        self.choose_paper_button = Button(text='Paper', image=self.paper_photo,
+                                          command=lambda: self.user_choice('p'),
                                           width=72, height=55)
         self.choose_paper_button.grid(row=3, column=2, pady=1)
 
         self.choose_scissors_button = Button(text='Scissors', image=self.scissors_photo,
-                                             command=lambda: self.user_choice('s'), width=72,
-                                             height=55)
+                                             command=lambda: self.user_choice('s'),
+                                             width=72, height=55)
         self.choose_scissors_button.grid(row=3, column=3, pady=1)
 
         self.quit_game = Button(text='Quit', command=self.window.destroy)
@@ -81,15 +77,13 @@ class GUI():
         self.scissors_lose = PhotoImage(file=r'sprites\Scissors_Lose_Result.png').subsample(3, 3)
         self.scissors_draw = PhotoImage(file=r'sprites\Scissors_Draw_Result.png').subsample(3, 3)
 
-        ##Display text:
+        ## Display text:
         self.banner = Canvas(width=400, height=50)
         self.banner.grid(row=1, column=2, pady=10)
 
-        self.banner_text = Label(text="Jan! Ken! Pon!", fg='black')
+        self.banner_text = Label(text="Jan! Ken! Pon!", fg='black', font=("Calibri", 18, "bold"))
         self.banner_text.grid(row=1, column=2, pady=1)
 
-        self.you_win_banner = PhotoImage(file=r'sprites\Victory text.png')
-        self.you_lose_banner = PhotoImage(file=r'sprites\Defeat text.png')
 
         ## Result lists:
         self.rock_results = [self.rock_win, self.rock_lose, self.rock_draw]
@@ -99,6 +93,7 @@ class GUI():
 
         self.window.mainloop()
 
+    ## MAJOR Functions:
     def cpu_choice(self):
         cpu_play = random.choice(logic.gambits)
         time.sleep(2)
@@ -122,32 +117,43 @@ class GUI():
         if user_play == 'r':
             if result == -10:
                 self.background.config(image=self.rock_loading)
+                self.banner_text.config(text="Jan! Ken! ...Pon?", fg='black', font=("Calibri", 18, "bold"))
             elif result == 1:
                 self.background.config(image=self.rock_win)
+                self.banner_text.config(text="You WIN! ^_^", fg='green', font=("Calibri", 18, "bold"))
             elif result == -1:
                 self.background.config(image=self.rock_lose)
+                self.banner_text.config(text="You LOSE! :'(", fg='#b92f2d', font=("Calibri", 18, "bold"))
             else:
                 self.background.config(image=self.rock_draw)
+                self.banner_text.config(text="It's a draw!", fg='#3b77d3', font=("Calibri", 18, "bold"))
         elif user_play == 'p':
             if result == -10:
                 self.background.config(image=self.paper_loading)
+                self.banner_text.config(text="Jan! Ken! ...Pon?", fg='black', font=("Calibri", 18, "bold"))
             elif result == 1:
                 self.background.config(image=self.paper_win)
+                self.banner_text.config(text="You WIN! ^_^", fg='green', font=("Calibri", 18, "bold"))
             elif result == -1:
                 self.background.config(image=self.paper_lose)
+                self.banner_text.config(text="You LOSE! :'(", fg='#b92f2d', font=("Calibri", 18, "bold"))
             else:
                 self.background.config(image=self.paper_draw)
+                self.banner_text.config(text="It's a draw!", fg='#3b77d3', font=("Calibri", 18, "bold"))
         else:
             if result == -10:
                 self.background.config(image=self.scissors_loading)
+                self.banner_text.config(text="Jan! Ken! ...Pon?", fg='black', font=("Calibri", 18, "bold"))
             elif result == 1:
                 self.background.config(image=self.scissors_win)
+                self.banner_text.config(text="You WIN! ^_^", fg='green', font=("Calibri", 18, "bold"))
             elif result == -1:
                 self.background.config(image=self.scissors_lose)
+                self.banner_text.config(text="You LOSE! :'(", fg='#b92f2d', font=("Calibri", 18, "bold"))
             else:
                 self.background.config(image=self.scissors_draw)
+                self.banner_text.config(text="It's a draw!", fg='#3b77d3', font=("Calibri", 18, "bold"))
 
         self.window.update()
 
-
-# window.mainloop()
+        # YAY! Thanks Greg! :)
