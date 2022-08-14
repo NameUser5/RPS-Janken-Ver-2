@@ -103,12 +103,15 @@ class GUI():
         print(user_play)
         # call function to update BG, send user_play
         self.game_bg_update(user_play)
+
         cpu_current_play = self.cpu_choice()
         print(user_play, cpu_current_play)
+
         result = logic.find_status(user_play, cpu_current_play)
         # call function to update BG, send result and user_play
         self.game_bg_update(user_play, result)
-        print(result)
+        print(f"{result}\n")
+
         logic.get_score(result)
         self.scoreboard.config(text=f"Score: {logic.score}")
         return result
