@@ -166,7 +166,7 @@ class GUI():
             if answer:
                 self.scoreboard.config(text="Loading...")
                 with open ("scoreboard.txt", "a") as file:
-                    file.write(f"{logic.score}")
+                    file.write(f"{logic.score}" + "\n")
                 self.scoreboard.config(text="Saved!")
                 self.window.update()
 
