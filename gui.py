@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 import random
 import game_logic as logic
 import time
@@ -50,7 +51,7 @@ class GUI():
                                              width=72, height=55)
         self.choose_scissors_button.grid(row=3, column=3, pady=1)
 
-        self.quit_game = Button(text='Quit', command=self.window.destroy)
+        self.quit_game = Button(text='Quit', command=lambda: self.save_score('y')) #self.window.destroy
         self.quit_game.grid(row=4, column=2, pady=1)
 
 
@@ -159,4 +160,16 @@ class GUI():
 
         self.window.update()
 
-        # YAY! Thanks Greg! :)
+    def save_score(self, quit_game):
+        if quit_game == 'y':
+            answer = messagebox.askyesno('Save Score', "Wait! Do you want to save your score?")
+            if answer:
+                self.scoreboard.config(text="Loading...")
+                with open ("scoreboard.txt", "a") as file:
+                    file.write(f"{logic.score}")
+                self.scoreboard.config(text="Saved!")
+                self.window.destroy()
+            else:
+                self.window.destroy()
+
+            # YAY! Thanks Greg! :)

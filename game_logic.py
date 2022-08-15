@@ -44,3 +44,4 @@ def get_score(status):
         score -= 1
     else:
         score += 1
+
