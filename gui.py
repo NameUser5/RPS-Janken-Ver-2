@@ -168,6 +168,9 @@ class GUI():
                 with open ("scoreboard.txt", "a") as file:
                     file.write(f"{logic.score}")
                 self.scoreboard.config(text="Saved!")
+                self.window.update()
+
+                time.sleep(2)
                 self.window.destroy()
             else:
                 self.window.destroy()
