@@ -54,6 +54,9 @@ class GUI():
         self.quit_game = Button(text='Quit', command=lambda: self.save_score('y')) #self.window.destroy
         self.quit_game.grid(row=4, column=2, pady=1)
 
+        self.view_scoreboard = Button(text='View\nScoreboard', command=lambda: self.get_scores('y'))
+        self.view_scoreboard.grid(row=1, column=3)
+
 
         ## Card sprites:
 
@@ -168,7 +171,7 @@ class GUI():
                 self.scoreboard.config(text="Loading\n...")
                 self.window.update()
 
-                with open ("scoreboard.txt", "a") as file:
+                with open("scoreboard.txt", "a") as file:
                     file.write(f"{logic.score}" + "\n")
                 time.sleep(2)
 
@@ -179,5 +182,9 @@ class GUI():
                 self.window.destroy()
             else:
                 self.window.destroy()
+
+    def get_scores(self, see_score):
+        if see_score == 'y':
+            self.banner_text.config(text="Hi!")
 
             # YAY! Thanks Greg! :)
