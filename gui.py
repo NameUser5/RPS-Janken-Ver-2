@@ -163,10 +163,15 @@ class GUI():
     def save_score(self, quit_game):
         if quit_game == 'y':
             answer = messagebox.askyesno('Save Score', "Wait! Do you want to save your score?")
+
             if answer:
-                self.scoreboard.config(text="Loading...")
+                self.scoreboard.config(text="Loading\n...")
+                self.window.update()
+
                 with open ("scoreboard.txt", "a") as file:
                     file.write(f"{logic.score}" + "\n")
+                time.sleep(2)
+
                 self.scoreboard.config(text="Saved!")
                 self.window.update()
 
