@@ -185,6 +185,6 @@ class GUI():
 
     def get_scores(self, see_score):
         if see_score == 'y':
-            self.banner_text.config(text="Hi!")
+            self.banner_text.config(text="Hi!") # add a popup window here
 
             # YAY! Thanks Greg! :)
