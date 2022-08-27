@@ -1,5 +1,6 @@
 # RPS-Janken-Ver-2
-Redux of New-Project-Janken
+## Rock-Paper-Scissors
+*Redux of New-Project-Janken*
 
 Game complete! :)
 
