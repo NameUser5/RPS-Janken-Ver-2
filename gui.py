@@ -177,9 +177,11 @@ class GUI():
                         self.window.destroy()
                         # username = simpledialog.askstring("Name", "Enter your username.", parent=self.window)
                     elif username.isspace():
-                        username = simpledialog.askstring("Name", "Enter your username.", parent=self.window)
-                    elif len(username) == 0:
-                        username = simpledialog.askstring("Name", "Enter your username.", parent=self.window)
+                        username = simpledialog.askstring("No Spaces!", "You need a name.", parent=self.window)
+                    elif len(username) == 0 or len(username) > 50:
+                        username = simpledialog.askstring("Length", "Try again.", parent=self.window)
+                    # elif len(username) > 50:
+                    #     username = simpledialog.askstring("Name", "Too long. Try again.", parent=self.window)
                     elif username.isascii():
                         username_get = False
                         self.scoreboard.config(text="Loading\n...")
