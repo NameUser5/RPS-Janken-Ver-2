@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
+from tkinter import simpledialog
 import random
 import game_logic as logic
 import time
@@ -168,18 +169,31 @@ class GUI():
             answer = messagebox.askyesno('Save Score', "Wait! Do you want to save your score?")
 
             if answer:
-                self.scoreboard.config(text="Loading\n...")
-                self.window.update()
+                username_get = True
+                while username_get:
+                    username = simpledialog.askstring("Name","Enter your username.", parent=self.window)
+                    if username is None:
+                        username_get = False
+                        self.window.destroy()
+                        # username = simpledialog.askstring("Name", "Enter your username.", parent=self.window)
+                    elif username.isspace():
+                        username = simpledialog.askstring("Name", "Enter your username.", parent=self.window)
+                    elif len(username) == 0:
+                        username = simpledialog.askstring("Name", "Enter your username.", parent=self.window)
+                    elif username.isascii():
+                        username_get = False
+                        self.scoreboard.config(text="Loading\n...")
+                        self.window.update()
 
-                with open("scoreboard.txt", "a") as file:
-                    file.write(f"{logic.score}" + "\n")
-                time.sleep(2)
+                        with open("scoreboard.txt", "a") as file:
+                            file.write(f"{logic.score},{username}" + "\n")
+                        time.sleep(2)
 
-                self.scoreboard.config(text="Saved!")
-                self.window.update()
+                        self.scoreboard.config(text="Saved!")
+                        self.window.update()
 
-                time.sleep(2)
-                self.window.destroy()
+                        time.sleep(2)
+                        self.window.destroy()
             else:
                 self.window.destroy()
 
